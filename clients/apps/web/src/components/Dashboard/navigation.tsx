@@ -1,5 +1,6 @@
 import { Organization } from '@polar-sh/sdk'
 
+import { isFeatureEnabled } from '@/utils/feature-flags'
 import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
 import {
   AllInclusiveOutlined,
@@ -87,6 +88,28 @@ export const maintainerRoutes = (org: Organization): Route[] => [
       },
     ],
   },
+  ...(isFeatureEnabled('products')
+    ? [
+        {
+          id: 'org-products',
+          title: 'Products',
+          icon: <DiamondOutlined className="h-5 w-5" fontSize="inherit" />,
+          postIcon: undefined,
+          link: `/maintainer/${org.name}/products`,
+          if: true,
+          subs: [
+            {
+              title: 'Overview',
+              link: `/maintainer/${org.name}/products`,
+            },
+            {
+              title: 'Inventory',
+              link: `/maintainer/${org.name}/products/inventory`,
+            },
+          ],
+        },
+      ]
+    : []),
   {
     id: 'org-issues',
     title: 'Issues',
