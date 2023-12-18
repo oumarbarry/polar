@@ -11,6 +11,7 @@ import {
   Face,
   FavoriteBorderOutlined,
   HowToVoteOutlined,
+  SellOutlined,
   SpaceDashboardOutlined,
   TuneOutlined,
   ViewDayOutlined,
@@ -174,6 +175,19 @@ export const backerRoutes = (): Route[] => [
     if: true,
     subs: undefined,
   },
+  ...(isFeatureEnabled('products')
+    ? [
+        {
+          id: 'purchases',
+          title: 'Purchases',
+          link: `/purchases`,
+          icon: <SellOutlined className="h-5 w-5" fontSize="inherit" />,
+          postIcon: undefined,
+          if: true,
+          subs: undefined,
+        },
+      ]
+    : []),
   {
     id: 'funding',
     title: 'Funding',
