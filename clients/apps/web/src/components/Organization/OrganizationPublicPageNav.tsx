@@ -1,5 +1,6 @@
 'use client'
 
+import { isFeatureEnabled } from '@/utils/feature-flags'
 import { ArrowBackOutlined } from '@mui/icons-material'
 import { Organization } from '@polar-sh/sdk'
 import Link from 'next/link'
@@ -95,6 +96,7 @@ export const OrganizationPublicPageNav = ({
         <SelectContent>
           <SelectItem value="overview">Overview</SelectItem>
           <SelectItem value="posts">Posts</SelectItem>
+          <SelectItem value="products">Products</SelectItem>
           <SelectItem value="subscriptions">Subscriptions</SelectItem>
           <SelectItem value="issues">Issues</SelectItem>
           <SelectItem value="repositories">Repositories</SelectItem>
@@ -128,6 +130,14 @@ export const OrganizationPublicPageNav = ({
             Posts
           </TabsTrigger>
         </Link>
+
+        {isFeatureEnabled('products') && (
+          <Link href={`/${organization.name}/products`}>
+            <TabsTrigger value="products" size="small">
+              Products
+            </TabsTrigger>
+          </Link>
+        )}
 
         <Link href={`/${organization.name}/subscriptions`}>
           <TabsTrigger
