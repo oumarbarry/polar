@@ -4,6 +4,7 @@ from functools import cached_property
 
 from pydantic import PostgresDsn, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from sqlalchemy import extract
 
 
 class Environment(str, Enum):
@@ -118,6 +119,7 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         case_sensitive=False,
         env_file=env_file,
+        extra="allow",
     )
 
     @field_validator("GITHUB_APP_PRIVATE_KEY", mode="before")
