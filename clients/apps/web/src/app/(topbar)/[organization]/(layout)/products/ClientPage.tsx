@@ -19,7 +19,10 @@ const ClientPage = ({ organization }: { organization: Organization }) => {
             className="flex flex-grow flex-col"
           >
             <Link href={`/${organization?.name}/products/${product.slug}`}>
-              <ProductTile product={product} />
+              <ProductTile
+                product={product}
+                link={`/${organization?.name}/products/${product.slug}`}
+              />
             </Link>
           </StaggerReveal.Child>
         ))}

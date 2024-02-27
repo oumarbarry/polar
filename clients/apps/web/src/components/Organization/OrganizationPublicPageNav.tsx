@@ -12,10 +12,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Tabs,
   TabsList,
   TabsTrigger,
 } from 'polarkit/components/ui/atoms'
-import { Tabs } from 'polarkit/components/ui/tabs'
 import { useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -45,6 +45,9 @@ export const OrganizationPublicPageNav = ({
     }
     if (pathParts.length >= 3 && pathParts[2] === 'posts') {
       return 'posts'
+    }
+    if (pathParts.length >= 3 && pathParts[2] === 'products') {
+      return 'products'
     }
     if (pathParts.length >= 3 && pathParts[2] === 'subscriptions') {
       return 'subscriptions'
@@ -133,7 +136,11 @@ export const OrganizationPublicPageNav = ({
 
         {isFeatureEnabled('products') && (
           <Link href={`/${organization.name}/products`}>
-            <TabsTrigger value="products" size="small">
+            <TabsTrigger
+              className={tabsTriggerClassName}
+              value="products"
+              size="small"
+            >
               Products
             </TabsTrigger>
           </Link>
