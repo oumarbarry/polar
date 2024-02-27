@@ -7,9 +7,10 @@ import { Product } from './Product'
 
 export interface ProductTileProps {
   product: Product
+  link: string
 }
 
-export const ProductTile = ({ product }: ProductTileProps) => {
+export const ProductTile = ({ product, link }: ProductTileProps) => {
   const ref = useRef<HTMLDivElement>(null)
   const isHovered = useHoverDirty(ref)
 
@@ -40,7 +41,11 @@ export const ProductTile = ({ product }: ProductTileProps) => {
           {product.description}
         </p>
         <div className="flex flex-row-reverse items-center justify-between gap-x-4">
-          <AnimatedIconButton active={isHovered} variant="secondary">
+          <AnimatedIconButton
+            href={link}
+            active={isHovered}
+            variant="secondary"
+          >
             <ArrowForward fontSize="inherit" />
           </AnimatedIconButton>
           {product.unlockable && (

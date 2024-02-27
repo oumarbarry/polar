@@ -28,7 +28,10 @@ export default function Page() {
         {productMocks.map((product) => (
           <StaggerReveal.Child key={product.id}>
             <Link href={getProductPathType(product)}>
-              <ProductTile product={product} />
+              <ProductTile
+                product={product}
+                link={getProductPathType(product)}
+              />
             </Link>
           </StaggerReveal.Child>
         ))}

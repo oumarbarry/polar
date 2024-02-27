@@ -30,7 +30,10 @@ const ClientPage = () => {
               className="flex flex-grow flex-col"
             >
               <Link href={`/maintainer/${org?.name}/products/${product.slug}`}>
-                <ProductTile product={product} />
+                <ProductTile
+                  link={`/maintainer/${org?.name}/products/${product.slug}`}
+                  product={product}
+                />
               </Link>
             </StaggerReveal.Child>
           ))}
